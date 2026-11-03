@@ -14,7 +14,7 @@
   </header>
 
   <h1>Privacy Policy</h1>
-  <p class="muted">ARIVU · Last updated: 2 November 2026</p>
+  <p class="muted">ARIVU · Last updated: 3 November 2026</p>
 
   <p>ARIVU is an internal tool operated by ME Software Solutions to publish content on
   social media accounts that we own. This policy explains what data ARIVU accesses
@@ -41,19 +41,27 @@
 
   <h2>ARIVU Dashboard</h2>
   <p>The <a href="https://mesoftwaresolutions.github.io/arivu-dashboard/">ARIVU Dashboard</a>
-  shows a page's upcoming posts and statistics. It runs only in your browser; we run no
-  server for it. After you sign in with Google it uses:</p>
+  shows a page's upcoming posts and statistics and lets the page owner manage them. It runs
+  only in your browser; we run no server for it. After you sign in with Google it uses:</p>
   <ul>
-    <li><strong>Google Sheets (read-only, <code>spreadsheets.readonly</code>):</strong> reads the
-      content sheet and analytics sheet that the signed-in account can open, to show the queue
-      and statistics. It cannot change any sheet.</li>
+    <li><strong>Google Sheets (<code>spreadsheets</code>):</strong> reads the content sheet and
+      analytics sheet that the signed-in account can open, to show the queue and statistics. It
+      changes the content sheet only when you ask it to: setting a post's status (Approve / Skip),
+      saving posting times in its Schedule tab, and adding a row for a post you upload.</li>
+    <li><strong>Google Drive (<code>drive.file</code>):</strong> only files the dashboard itself
+      creates: an "ARIVU uploads" folder and the photos or videos you upload into it. Each upload
+      is shared read-only with your page's own service account, so the ARIVU engine can publish
+      it. It cannot see any other file in Google Drive.</li>
     <li><strong>Google Drive app data (<code>drive.appdata</code>):</strong> saves only the
-      dashboard's own settings file (sheet links, publish time, goals) in the account's hidden
-      app folder. It cannot see any other file in Google Drive.</li>
+      dashboard's own settings file (sheet links, goals) in the account's hidden app folder.</li>
     <li><strong>Basic profile (email, name):</strong> to show which account is signed in.</li>
   </ul>
   <p>The sign-in token stays in the browser tab and is removed when you sign out or close
   the tab. The dashboard does not send your data to us or to anyone else.</p>
+  <p><strong>ARIVU scheduler:</strong> a small Google Apps Script that the page owner adds to their
+  own content sheet. Every 30 minutes it reads the sheet's Schedule tab and, when a post is due,
+  asks GitHub to start publishing, using a GitHub token the owner stores in that script. It runs
+  in the owner's Google account and sends no data to us.</p>
 
   <h2>Meta data (Instagram, Facebook, Threads)</h2>
   <p>ARIVU publishes approved posts to our own Instagram professional account, Facebook
